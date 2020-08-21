@@ -1,0 +1,95 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion build_versions.compileSdkVersion
+    buildToolsVersion build_versions.buildToolsVersion
+
+    defaultConfig {
+
+        minSdkVersion build_versions.minSdkVersion
+        targetSdkVersion build_versions.targetSdkVersion
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        multiDexEnabled true
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi-v7a', 'armeabi', 'x86', 'x86_64', 'arm64-v8a'
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    api fileTree(dir: "libs", include: ["*.jar"])
+    api 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //livedata+livecycles
+    api "android.arch.lifecycle:runtime:1.1.1"
+    api "android.arch.lifecycle:extensions:1.1.1"
+    api "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    api "android.arch.persistence.room:rxjava2:1.1.1"
+//    api 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+    api "android.arch.paging:runtime:1.0.1"
+    //okgo
+    api 'com.lzy.net:okgo:3.0.4'
+
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    //autosize今日头条适配
+    api 'me.jessyan:autosize:1.2.1'
+    //gson
+    api 'com.google.code.gson:gson:2.8.5'
+
+    //通用工具类
+    api 'com.blankj:utilcode:1.28.0'
+
+    // 基础依赖包，必须要依赖
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    // fragment快速实现（可选）
+    api 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+
+    api('com.github.hotchemi:permissionsdispatcher:3.1.0')
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+
+    api "com.zhihu.android:matisse:0.5.3-beta3"
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    api 'com.squareup.picasso:picasso:2.5.2'
+
+
+    api 'com.camerakit:camerakit:1.0.0-beta3.11'
+    api 'com.camerakit:jpegkit:0.2.2'
+    api 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4'
+
+    api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+
+    //aRoute
+    api 'com.alibaba:arouter-api:1.5.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+
+}

@@ -1,0 +1,3 @@
+include ':common_mvvm'
+include ':app'
+rootProject.name = "sdk_mvvm"

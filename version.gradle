@@ -1,0 +1,26 @@
+def build_versions = [:]
+build_versions.compileSdkVersion = 29
+build_versions.buildToolsVersion = "29.0.3"
+
+build_versions.applicationId = "com.droget.sdk_mvvm"
+build_versions.minSdkVersion = 21
+build_versions.targetSdkVersion = 29
+
+build_versions.versionCode = 1
+build_versions.versionName = "1.0"
+ext.build_versions = build_versions
+
+
+def addRepos(RepositoryHandler handler) {
+    handler.maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    handler.maven { url 'https://maven.aliyun.com/repository/google' }
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.maven { url "https://jitpack.io" }
+    handler.maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+ext.addRepos = this.&addRepos
+
+
